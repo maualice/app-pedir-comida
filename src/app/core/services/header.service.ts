@@ -7,6 +7,6 @@ export class HeaderService {
 
   constructor() { }
 
-  titulo = signal("Titulo")
+  titulo = signal("")
   extendido = signal(true)
 }
