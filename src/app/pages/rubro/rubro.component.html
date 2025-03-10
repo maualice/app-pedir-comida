@@ -2,5 +2,6 @@
     <app-tarjeta-producto 
     *ngFor="let producto of productos" 
     [producto]="producto" 
+    [routerLink]="['/articulo',producto.id]"
     />
 </div>
