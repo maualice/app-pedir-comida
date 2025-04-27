@@ -6,6 +6,7 @@ import { ContadorCantidadComponent } from "../../core/components/contador-cantid
 import { Producto } from '../../core/interfaces/productos';
 import { ProductosService } from '../../core/services/productos.service';
 import { RouterModule } from '@angular/router';
+import { PerfilService } from '../../core/services/perfil.service';
 
 @Component({
   selector: 'app-carrito',
@@ -19,6 +20,7 @@ export class CarritoComponent {
   headerService = inject(HeaderService)
   cartService = inject(CartService)
   productService = inject(ProductosService)
+  perfilService = inject(PerfilService)
 
   productosCarrito: Producto[] = [];
 
@@ -30,7 +32,7 @@ export class CarritoComponent {
     this.headerService.titulo.set("Carrito")
     this.cartService.carrito.forEach(async itemCarrito => {
       const res = await this.productService.getById(itemCarrito.idProducto)
-      if (res) this.productosCarrito.push(res) 
+      if (res) this.productosCarrito.push(res)
       this.calcularInformacion()
     })
   }
@@ -47,8 +49,8 @@ export class CarritoComponent {
     this.total = this.subtotal + this.delivery
   }
 
-  cambiarCantidadProducto(id:number,cantidad:number){
-    this.cartService.cambiarCantidadProducto(id,cantidad)
+  cambiarCantidadProducto(id: number, cantidad: number) {
+    this.cartService.cambiarCantidadProducto(id, cantidad)
     this.calcularInformacion()
   }
 }
