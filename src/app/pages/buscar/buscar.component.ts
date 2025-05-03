@@ -1,17 +1,37 @@
 import { Component, inject } from '@angular/core';
 import { HeaderService } from '../../core/services/header.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Busqueda } from '../../core/interfaces/busqueda';
+import { ProductosService } from '../../core/services/productos.service';
+import { Producto } from '../../core/interfaces/productos';
+import { TarjetaProductoComponent } from '../../core/components/tarjeta-producto/tarjeta-producto.component';
 
 @Component({
   selector: 'app-buscar',
-  standalone: false,
+  standalone: true,
   templateUrl: './buscar.component.html',
-  styleUrl: './buscar.component.scss'
+  styleUrl: './buscar.component.scss',
+  imports: [CommonModule, FormsModule, TarjetaProductoComponent]
 })
 export class BuscarComponent {
 
   headerService = inject(HeaderService)
-  
-    ngOnInit(): void {
-      this.headerService.titulo.set("Buscar")
-    }
+  productService = inject(ProductosService)
+  productos: Producto[] = []
+
+  ngOnInit(): void {
+    this.headerService.titulo.set("Buscar");
+    this.productService.getAll().then(res => this.productos = res)
+  }
+
+  parametrosBusqueda: Busqueda = {
+    texto: "",
+    aptoCeliaco: false,
+    aptoVegano: false
+  }
+
+  async buscar() {
+    this.productos = await this.productService.buscar(this.parametrosBusqueda)
+  }
 }
