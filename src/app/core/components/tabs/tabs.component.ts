@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class TabsComponent {
 
-  constructor(private router: Router) {
+  constructor(public router: Router) {
   }
 
   colorDesactivado = "#555555"

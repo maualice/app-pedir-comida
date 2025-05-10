@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, ViewChild, viewChild } from '@angular/core';
+import { Component, ElementRef, inject, signal, ViewChild, viewChild, WritableSignal } from '@angular/core';
 import { HeaderService } from '../../core/services/header.service';
 import { CartService } from '../../core/services/cart.service';
 import { CommonModule } from '@angular/common';
@@ -24,7 +24,7 @@ export class CarritoComponent {
   perfilService = inject(PerfilService)
   router = inject(Router)
 
-  productosCarrito: Producto[] = [];
+  productosCarrito: WritableSignal<Producto[]> = signal([]);
 
   subtotal = 0
   delivery = 100
@@ -35,7 +35,7 @@ export class CarritoComponent {
     this.headerService.titulo.set("Carrito")
     this.cartService.carrito.forEach(async itemCarrito => {
       const res = await this.productService.getById(itemCarrito.idProducto)
-      if (res) this.productosCarrito.push(res)
+      if (res) if(res) this.productosCarrito.set([...this.productosCarrito(),res]); //this.productosCarrito.push(res)
       this.calcularInformacion()
     })
   }
@@ -47,7 +47,7 @@ export class CarritoComponent {
   calcularInformacion() {
     this.subtotal = 0;
     for (let i = 0; i < this.cartService.carrito.length; i++) {
-      this.subtotal += this.productosCarrito[i].precio * this.cartService.carrito[i].cantidad
+      this.subtotal += this.productosCarrito()[i].precio * this.cartService.carrito[i].cantidad
     }
     this.total = this.subtotal + this.delivery
   }
