@@ -1,16 +1,16 @@
 @use "./../../../assets/styles/variables.scss";
 
-h2{
-   margin-top: 50px;
-   font-size: xx-large;
-   text-align: center; 
+h2 {
+    margin-top: 50px;
+    font-size: xx-large;
+    text-align: center;
 }
 
 #tarjetas-container {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    border-radius: 10px;
+    border-radius: variables.$border-radius-chico;
     overflow: hidden;
 }
 
@@ -20,7 +20,7 @@ h2{
     height: 100px;
     background-color: variables.$color-principal-claro;
 
-    >div{
+    >div {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -33,12 +33,14 @@ h2{
     background-color: bisque;
     background-size: cover;
     background-position: center;
-    border-radius: 10px;
-    > div {
+    border-radius: variables.$border-radius-chico;
+
+    >div {
         position: absolute;
         bottom: 8px;
         left: 8px;
-        img{
+
+        img {
             height: 20px;
             background-color: variables.$color-sello-comida;
             border-radius: 50%;
@@ -55,47 +57,48 @@ h2{
     background-color: azure;
 }
 
-#borrar{
+#borrar {
     background-color: unset;
     border: unset;
     cursor: pointer;
 }
 
-#mas{
+#mas {
     font-size: xx-large;
     text-decoration: none;
     color: black;
     background-color: variables.$color-principal-claro;
     padding: 15px 30px;
-    border-radius: 10px;
+    border-radius: variables.$border-radius-chico;
 }
 
-#informacion{
+#informacion {
     font-size: larger;
 }
 
-#envios-container{
+#envios-container {
     background-color: variables.$color-principal-claro;
-    border-radius: 10px;
+    border-radius: variables.$border-radius-chico;
     padding: 10px;
     margin: 10px 0;
     align-items: center;
-    h4{
+
+    h4 {
         font-size: large;
     }
 }
 
-#montos{
+#montos {
     text-align: end;
 }
 
-#totales > div{
+#totales>div {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-#enviar{
+#enviar {
     display: block;
     width: 100%;
     margin-top: 40px;
@@ -104,38 +107,47 @@ h2{
     border: unset;
     cursor: pointer;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: variables.$border-radius-chico;
     font-weight: bold;
 }
 
-dialog{
-    background-color: variables.$color-principal-claro;
-    border-radius: 10px;
-    border: unset;    
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.156);
-    div{
-      margin-top: 50px;
-      display: flex;
-      justify-content: space-around;
-    }
-    button{
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      width: 130px;
-      &:first-of-type{
-        background-color: rgb(211, 255, 211);
-      }
-      &:last-of-type{
-        background-color: rgb(255, 211, 211);
-      }
-      span:first-child{
-        font-size: x-large;
-      }
-    }
-    p{
-      font-size: x-large;
-      text-align: center;
-    }
+#boton-editar-direccion {
+    padding-right: 10px;
 }
 
+dialog {
+    background-color: variables.$color-principal-claro;
+    border-radius: variables.$border-radius-chico;
+    border: unset;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.156);
+
+    div {
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    button {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        width: 130px;
+
+        &:first-of-type {
+            background-color: rgb(211, 255, 211);
+        }
+
+        &:last-of-type {
+            background-color: rgb(255, 211, 211);
+        }
+
+        span:first-child {
+            font-size: x-large;
+        }
+    }
+
+    p {
+        font-size: x-large;
+        text-align: center;
+    }
+}
