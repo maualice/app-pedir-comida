@@ -8,6 +8,7 @@ import { ProductosService } from '../../core/services/productos.service';
 import { Router, RouterModule } from '@angular/router';
 import { PerfilService } from '../../core/services/perfil.service';
 import { NUMERO_WHTSAPP } from '../../core/constants/telefono';
+import { ConfigService } from '../../core/services/config.service';
 
 @Component({
   selector: 'app-carrito',
@@ -22,13 +23,13 @@ export class CarritoComponent {
   cartService = inject(CartService)
   productService = inject(ProductosService)
   perfilService = inject(PerfilService)
+  configService= inject(ConfigService)
   router = inject(Router)
 
   productosCarrito: WritableSignal<Producto[]> = signal([]);
 
-  subtotal = 0
-  delivery = 100
-  total = 0
+  subtotal = 0;
+  total = 0;
   @ViewChild("dialog") dialog!: ElementRef<HTMLDialogElement>
 
   ngOnInit(): void {
@@ -49,7 +50,7 @@ export class CarritoComponent {
     for (let i = 0; i < this.cartService.carrito.length; i++) {
       this.subtotal += this.productosCarrito()[i].precio * this.cartService.carrito[i].cantidad
     }
-    this.total = this.subtotal + this.delivery
+    this.total = this.subtotal + this.configService.configuracion().costoEnvio; //usar signal computed para delivery
   }
 
   cambiarCantidadProducto(id: number, cantidad: number) {
