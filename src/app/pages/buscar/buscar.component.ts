@@ -6,13 +6,14 @@ import { Busqueda } from '../../core/interfaces/busqueda';
 import { ProductosService } from '../../core/services/productos.service';
 import { Producto } from '../../core/interfaces/productos';
 import { TarjetaProductoComponent } from '../../core/components/tarjeta-producto/tarjeta-producto.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-buscar',
   standalone: true,
   templateUrl: './buscar.component.html',
   styleUrl: './buscar.component.scss',
-  imports: [CommonModule, FormsModule, TarjetaProductoComponent]
+  imports: [CommonModule, FormsModule, TarjetaProductoComponent,RouterModule]
 })
 export class BuscarComponent {
 

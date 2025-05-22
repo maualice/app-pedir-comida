@@ -23,7 +23,7 @@ export class CarritoComponent {
   cartService = inject(CartService)
   productService = inject(ProductosService)
   perfilService = inject(PerfilService)
-  configService= inject(ConfigService)
+  configService = inject(ConfigService)
   router = inject(Router)
 
   productosCarrito: WritableSignal<Producto[]> = signal([]);
@@ -34,11 +34,17 @@ export class CarritoComponent {
 
   ngOnInit(): void {
     this.headerService.titulo.set("Carrito")
-    this.cartService.carrito.forEach(async itemCarrito => {
-      const res = await this.productService.getById(itemCarrito.idProducto)
-      if (res) if(res) this.productosCarrito.set([...this.productosCarrito(),res]); //this.productosCarrito.push(res)
-      this.calcularInformacion()
+    this.buscarInformacionProductos().then(() => {
+      this.calcularInformacion();
     })
+  }
+
+  async buscarInformacionProductos() {
+    for (let i = 0; i < this.cartService.carrito.length; i++) {
+      const itemCarrito = this.cartService.carrito[i];
+      const res = await this.productService.getById(itemCarrito.idProducto)
+      if (res) this.productosCarrito.set([...this.productosCarrito(), res]); //this.productosCarrito.push(res)
+    }
   }
 
   eliminarProducto(idProducto: number) {

@@ -1,7 +1,23 @@
-app-tabs{
+/* app-tabs{
     //margin-top: auto; //Cuando aplicas margin-top: auto; a un elemento dentro de un contenedor flex, el elemento se empuja hacia el final del contenedor, porque el margen superior toma todo el espacio disponible hacia la parte superior del contenedor
     position: absolute; //para que no baje la barra de navegacion
     bottom: 0;
     left: 0;
     right: 0;
+} */
+
+#container{
+    height: 100svh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; 
+}
+
+app-tabs{
+    margin-top: auto; 
+}
+
+main{
+    flex: 1;
+    overflow-y: auto;
 }
