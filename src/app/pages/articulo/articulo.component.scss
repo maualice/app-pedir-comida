@@ -43,6 +43,11 @@ textarea{
     margin-top: 10px;
     width: 100%;
     resize: vertical;
+    box-sizing: border-box;//o usar width:calc(100%-30px)
+    padding: 15px;
+    &:focus{
+        outline: none;
+    }
 }
 
 #cantidad-container{
